@@ -11,24 +11,22 @@ const app = express();
 //cors
 app.use(cors());
 
-
+app.use(express.json());
 
 
 //creando ka conexio a la bd
 
 dbConection();
 //creando rutas
+app.use('/api/usuarios', require('./routes/usuarios.routes'));
+//app.use('/api/usuarios', require('./routes/investigadores.route'));
+app.use('/api/login', require('./routes/auth.routes'));
 
-app.get('/', (req, res) => {
-    res.status.json({
-        ok: true,
-        msg: 'biennvenidos a la app proyectos'
-    });
-});
+
 
 //codigo para desplegar
 app.listen(process.env.PORT, () => {
-        console.log('servidor desplegado en el puerto: ' + 3000)
+        console.log('servidor desplegado en el puerto: ' + process.env.PORT)
     })
     //adimnproject
     //XigtAc9IR5fb27FB
